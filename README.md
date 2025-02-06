@@ -65,6 +65,7 @@ Le projet suit l'architecture recommandée par FastAPI pour les applications de 
 [J] models/wallet_models.py
 [J] models/users_models.py
 [J] models/crypto_models.py
+-- Finalement Wallet pour la vision globale et userAssets pour la liste détaillé ... Evite de forcer une mise à jour à chaque fois
 
 services/auth_service.py
 [J] Genere un code secret

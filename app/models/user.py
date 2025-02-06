@@ -1,3 +1,6 @@
 class User:
-    name: str
-    email: str
+        id: int
+        firstName: str
+        Lastname: str
+        email: str
+        password: str
