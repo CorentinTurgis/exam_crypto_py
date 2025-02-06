@@ -26,8 +26,8 @@ Le projet suit l'architecture recommandée par FastAPI pour les applications de 
 ## Installation
 1. **Cloner le dépôt** :
    ```bash
-   git clone <url_du_repo>
-   cd <nom_du_repo>
+   git clone https://github.com/CorentinTurgis/exam_crypto_py.git
+   cd exam_crypto_py
    ```
 2. **Créer un environnement virtuel** :
    ```bash
@@ -41,7 +41,7 @@ Le projet suit l'architecture recommandée par FastAPI pour les applications de 
    ```
 4. **Lancer le serveur FastAPI** :
    ```bash
-   uvicorn app.main:app --reload
+   fastapi app/main.py
    ```
 
 ## TODO
