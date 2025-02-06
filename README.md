@@ -32,8 +32,8 @@ Le projet suit l'architecture recommandée par FastAPI pour les applications de 
 2. **Créer un environnement virtuel** :
    ```bash
    python -m venv venv
-   source venv/bin/activate  # Sur macOS/Linux
-   venv\Scripts\activate  # Sur Windows
+   source venv/bin/activate
+   venv\Scripts\activate
    ```
 3. **Installer les dépendances** :
    ```bash
@@ -47,30 +47,35 @@ Le projet suit l'architecture recommandée par FastAPI pour les applications de 
 ## TODO
 ###v1
 -> api/route/wallet_router.py
-[ ] Une route /wallet/wealth -> List[{'crypto' : 'btc', 'qtt' : '0.001', 'valeur' : '94_000'}]
-[ ] Une route POST /wallet/add_one(crypto_name, qtt) -> Ok
-[ ] Une route POST /wallet/remove_one(crypto_name, qtt) -> Ok
+[C] Une route /wallet/wealth -> List[{'crypto' : 'btc', 'qtt' : '0.001', 'valeur' : '94_000'}]
+[C] Une route POST /wallet/add_one(crypto_name, qtt) -> Ok
+[C] Une route POST /wallet/remove_one(crypto_name, qtt) -> Ok
 
 -> api/route/user_router.py
-[ ] Une route POST /users/register
-[ ] Une route POST /users/login(user) -> 'user.name_secret'
-[ ] Une route POST /users/delete
+[C] Une route POST /users/register
+[C] Une route POST /users/login(user) -> 'user.name_secret'
+[C] Une route POST /users/delete
+
+-> core/schemas
+[C] wallets_schema.py
+[C] users_schema.py
+[C] cryptos_schema.py
 
 //Typage
-[ ] models/wallet_models.py
-[ ] models/users_models.py
-[ ] models/crypto_models.py
+[J] models/wallet_models.py
+[J] models/users_models.py
+[J] models/crypto_models.py
 
 services/auth_service.py
-[ ] Genere un code secret
-[ ] Decode un code secret
+[J] Genere un code secret
+[J] Decode un code secret
 
 services/wallet_services.py
-[ ] Recupere la data brute sur l'api et la transforme pour retourner juste ce qu'il faut
-[ ] Gere l'ajout d'une crypto dans le wallet
-[ ] Gere le remove d'une qtt d'une crypto dans un wallet
+[J] Recupere la data brute sur l'api et la transforme pour retourner juste ce qu'il faut
+[J] Gere l'ajout d'une crypto dans le wallet
+[J] Gere le remove d'une qtt d'une crypto dans un wallet
 
 services/user_service.py
-[ ] CrudUser
+[J] CrudUser
 
 - Proteger les autres routes si le header Bearer != 'code_secret'
