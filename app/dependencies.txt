@@ -1,1 +1,1 @@
-fastapi "fastapi[standard]" peewee
+fastapi "fastapi[standard]" peewee colorama
