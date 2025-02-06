@@ -4,7 +4,7 @@ from peewee import AutoField, CharField, DateTimeField
 
 from .db_base_model import BaseModel
 
-class DbUsersModel(BaseModel):
+class User(BaseModel):
     """
     Modèle utilisateur Peewee.
       - email : email unique
