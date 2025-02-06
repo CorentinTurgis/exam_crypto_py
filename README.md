@@ -41,7 +41,7 @@ Le projet suit l'architecture recommandée par FastAPI pour les applications de 
    ```
 4. **Lancer le serveur FastAPI** :
    ```bash
-   fastapi app/main.py
+   fastapi dev app/main.py
    ```
 
 ## TODO
