@@ -1,5 +1,5 @@
 from .database import db
-from .db_users_model import DbUsersModel
+from .db_user_model import User
 from .db_base_model import BaseModel
 
-__all__ = ("db", "DbUsersModel", "BaseModel")
+__all__ = ("db", "User", "BaseModel")

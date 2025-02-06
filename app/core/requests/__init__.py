@@ -1,0 +1,2 @@
+from .auth_router_requests import LoginRequest
+from .auth_router_requests import RegisterRequest
