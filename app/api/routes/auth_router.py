@@ -9,7 +9,7 @@ auth_router = APIRouter()
 @auth_router.post("/login", response_model=LoginResponse)
 def login(req: LoginRequest) -> LoginResponse:
     try:
-        user = get_user_by('username', req.username)
+        user = get_user_by('email', req.email)
         return LoginResponse(token=user.username+'_secret')
     except Exception as e:
         print(f'ERREUR : {e}')
