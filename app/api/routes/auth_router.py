@@ -7,6 +7,16 @@ from app.services import get_user_by, save_user, encode_token
 
 auth_router = APIRouter()
 
+from fastapi import APIRouter, Depends
+from app.core.dependencies.auth_dependency import get_current_user
+
+user_router = APIRouter()
+
+@auth_router.get("/test")
+def list_users(current_user=Depends(get_current_user)):
+    return current_user
+
+
 @auth_router.post("/login", response_model=LoginResponse)
 def login(req: LoginRequest) -> LoginResponse:
     try:
