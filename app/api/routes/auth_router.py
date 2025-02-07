@@ -1,16 +1,18 @@
 from fastapi import APIRouter
 
+from app.core.db import User
 from app.core.requests import LoginRequest, RegisterRequest
 from app.core.responses.auth_router_responses import RegisterResponse, LoginResponse
-from app.services import get_user_by, save_user
+from app.services import get_user_by, save_user, encode_token
 
 auth_router = APIRouter()
 
 @auth_router.post("/login", response_model=LoginResponse)
 def login(req: LoginRequest) -> LoginResponse:
     try:
-        user = get_user_by('email', req.email)
-        return LoginResponse(token=user.username+'_secret')
+        user: User = get_user_by('email', req.email)
+        if user is not None:
+            return LoginResponse(token=encode_token(user.username))
     except Exception as e:
         print(f'ERREUR : {e}')
     return LoginResponse(token='')
@@ -22,7 +24,7 @@ def register(req: RegisterRequest) -> RegisterResponse:
         if get_user_by('email', req.email) is not None:
             return RegisterResponse(token='', detail='User already exist')
         save_user(req)
-        return RegisterResponse(token=f'{req.username}_secret', detail='')
+        return RegisterResponse(token=encode_token(req.username), detail='Ok')
     except Exception as e:
         print(f'ERREUR : {e}')
-    return RegisterResponse(token='', detail='')
+    return RegisterResponse(token='', detail='Unexpected exception')
