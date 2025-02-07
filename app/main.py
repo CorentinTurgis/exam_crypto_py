@@ -3,14 +3,14 @@ import contextlib
 from fastapi import FastAPI
 
 from app.api.routes import auth_router
-from app.core.db import db, User
+from app.core.db import db, Users
 
 
 @contextlib.asynccontextmanager
 async def lifespan(app: FastAPI):
     if db.is_closed():
         db.connect()
-    db.create_tables([User])
+    db.create_tables([Users])
 
     yield
 

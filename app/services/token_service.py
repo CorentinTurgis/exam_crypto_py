@@ -1,4 +1,4 @@
-from app.core.db import User
+from app.core.db import Users
 from app.services import get_user_by
 
 
@@ -9,7 +9,7 @@ def encode_token(username: str) -> str:
     """
     return f"{username}_secret"
 
-def decode_token(token: str) -> User or None:
+def decode_token(token: str) -> Users or None:
     """
     Décode un token et retourne l'utilisateur correspondant.
     """

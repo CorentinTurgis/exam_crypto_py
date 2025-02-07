@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.core.db import User
+from app.core.db import Users
 from app.core.requests import LoginRequest, RegisterRequest
 from app.core.responses.auth_router_responses import RegisterResponse, LoginResponse
 from app.services import get_user_by, save_user, encode_token
@@ -20,7 +20,7 @@ def list_users(current_user=Depends(get_current_user)):
 @auth_router.post("/login", response_model=LoginResponse)
 def login(req: LoginRequest) -> LoginResponse:
     try:
-        user: User = get_user_by('email', req.email)
+        user: Users = get_user_by('email', req.email)
         if user is not None:
             return LoginResponse(token=encode_token(user.username))
     except Exception as e:
