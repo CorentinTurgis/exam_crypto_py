@@ -1,8 +1,5 @@
-from datetime import datetime
+from peewee import AutoField, CharField
 
-from peewee import AutoField, CharField, DateTimeField
-
-from . import PARIS_TIMEZONE
 from .db_base_model import BaseModel
 
 class User(BaseModel):
@@ -17,10 +14,6 @@ class User(BaseModel):
     username = CharField(unique=True)
     email = CharField(unique=True)
     password = CharField()
-    created_at = DateTimeField(default=lambda: datetime.now(PARIS_TIMEZONE))
-    updated_at = DateTimeField(default=lambda: datetime.now(PARIS_TIMEZONE))
 
-    # Met à jour automatiquement le champ "updated_at" à chaque sauvegarde
     def save(self, *args, **kwargs):
-        self.updated_at = datetime.now(PARIS_TIMEZONE)
         return super().save(*args, **kwargs)
