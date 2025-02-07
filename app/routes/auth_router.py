@@ -2,8 +2,8 @@ from fastapi import APIRouter
 
 from app.core.db import Users
 from app.core.requests import LoginRequest, RegisterRequest
-from app.core.responses.auth_router_responses import RegisterResponse, LoginResponse
-from app.services import get_user_by, save_user, encode_token
+from app.core.responses import LoginResponse, RegisterResponse
+from app.services import get_user_by, encode_token, save_user
 
 auth_router = APIRouter()
 

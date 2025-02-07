@@ -8,6 +8,7 @@ def get_user_by_id(user_id) -> Users or None:
         user = Users.get_or_none(Users.id == user_id)
         if user is None:
             raise HTTPException(status_code=404, detail='user_not_found')
+        return user
     except Exception as e:
         print(f'ERREUR : {e}')
     return None

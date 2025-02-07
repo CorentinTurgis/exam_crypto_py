@@ -2,8 +2,9 @@ import contextlib
 
 from fastapi import FastAPI
 
-from app.api.routes import auth_router
-from app.core.db import db, Users
+from app.core.db import db, Users, Assets
+from app.routes import auth_router
+from app.services import CoinCap
 
 
 @contextlib.asynccontextmanager
@@ -11,6 +12,7 @@ async def lifespan(app: FastAPI):
     if db.is_closed():
         db.connect()
     db.create_tables([Users])
+    db.create_tables([Assets])
 
     yield
 
@@ -26,3 +28,4 @@ def create_application() -> FastAPI:
     return app
 
 app = create_application()
+CoinCap.fetch_and_store_asset('bitcoin')

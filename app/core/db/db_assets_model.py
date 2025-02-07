@@ -1,14 +1,20 @@
-from peewee import AutoField, CharField, FloatField
+from peewee import CharField, FloatField, IntegerField
 
 from app.core.db import BaseModel
 
 
 class Assets(BaseModel):
-    id = AutoField()
-    name = CharField()
+    id = CharField()
+    rank = IntegerField()
     symbol = CharField()
-    price = FloatField()
-    quantity = FloatField()
+    name = CharField()
+    supply = FloatField()
+    maxSupply = FloatField()
+    marketCapUsd = FloatField()
+    volumeUsd24Hr = FloatField()
+    priceUsd = FloatField()
+    changePercent24Hr = FloatField()
+    vwap24Hr = FloatField()
 
     def save(self, *args, **kwargs):
         return super().save(*args, **kwargs)

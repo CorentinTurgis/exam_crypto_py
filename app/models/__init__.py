@@ -1,0 +1,1 @@
+from .cap_coin_assets import CapCoinAsset

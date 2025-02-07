@@ -1,35 +1,38 @@
-class AssetService(Asset):
-    def __init__(self, asset_id: int, symbol: str, name: str, price: str, rank: int, supply: float, max_supply: float, market_cap: float, update_time: datetime.datetime = None):
-        self.id = asset_id
-        self.symbol = symbol
-        self.name = name
-        self.price = price
-        self.rank = rank
-        self.supply = supply
-        self.maxSupply = max_supply
-        self.marketCap = market_cap
-        self.updateTime = update_time or datetime.datetime.now()
-    
-    def update_price(self, new_price: str):
-        self.price = new_price
-        self.updateTime = datetime.datetime.now()
-    
-    def update_supply(self, new_supply: float):
-        self.supply = new_supply
-        self.updateTime = datetime.datetime.now()
+from fastapi import HTTPException
+
+from app.core.db import Assets, db
+from app.models import CapCoinAsset
 
 
-# Exemple :
-'''
-if __name__ == "__main__":
-    asset_service = AssetService(
-        asset_id=1,
-        symbol="BTC",
-        name="Bitcoin",
-        price="30000",
-        rank=1,
-        supply=18000000,
-        max_supply=21000000,
-        market_cap=600000000000
-    )
-'''
+def add_asset(asset_data: CapCoinAsset):
+    """
+    Ajoute un actif crypto en base de données.
+    """
+    try:
+        with db.atomic():
+            asset = Assets.create(
+                id=asset_data.id,
+                rank=asset_data.rank,
+                symbol=asset_data.symbol,
+                name=asset_data.name,
+                supply=asset_data.supply,
+                maxSupply=asset_data.maxSupply,
+                marketCapUsd=asset_data.marketCapUsd,
+                volumeUsd24Hr=asset_data.volumeUsd24Hr,
+                priceUsd=asset_data.priceUsd,
+                changePercent24Hr=asset_data.changePercent24Hr,
+                vwap24Hr=asset_data.vwap24Hr,
+                explorer=asset_data.explorer
+            )
+        return asset
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erreur lors de l'ajout de l'actif : {e}")
+
+def get_asset_by_id(asset_id: int):
+    try:
+        asset = Assets.get_or_none(Assets.id == asset_id)
+        if asset is None:
+            raise HTTPException(status_code=404, detail="Actif introuvable.")
+        return asset
+    except Exception as e:
+        print(f'{e}')
