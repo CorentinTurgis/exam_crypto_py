@@ -1,3 +1,35 @@
+from fastapi import HTTPException
+
+from app.core.db import User, db
+from app.core.requests import RegisterRequest
+
+def get_user_by_id(user_id) -> User or None:
+    try:
+        user = User.get_or_none(User.id == user_id)
+        if user is None:
+            raise HTTPException(status_code=404, detail='user_not_found')
+    except Exception as e:
+        print(f'ERREUR : {e}')
+    return None
+
+def get_user_by(field: str, value: str) -> User or None:
+    try:
+        user: User or None = User.get_or_none(getattr(User, field) == value)
+        return user
+    except Exception as e:
+        print(f"ERREUR e: {e}")
+    return None
+
+def save_user(user_req: RegisterRequest) -> None:
+    with db.atomic():
+        User.create(
+            first_name=user_req.first_name,
+            last_name=user_req.last_name,
+            username=user_req.username,
+            email=user_req.email,
+            password=user_req.password
+        )
+
 class UserService(User):
     def __init__(self, user_id: int, first_name: str, last_name: str, email: str, password: str):
         self.id = user_id
