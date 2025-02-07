@@ -15,10 +15,10 @@
 
 ## 🔗 Endpoints RESTful
 - [ ] **Créer les endpoints suivants :**
-    - [ ] `/wallets` : Créer et récupérer un portefeuille *()*
-    - [ ] `/wallets/{id}/assets` : Ajouter et gérer des cryptos *()*
+    - [ ] `/wallets/create` : Créer et récupérer un portefeuille *()*
+    - [ ] `/wallets/{id}/add` : Ajouter et gérer des cryptos *()*
     - [ ] `/wallets/{id}/value` : Calculer la valeur du portefeuille *()*
-    - [ ] `/crypto-prices/{symbol}` : Obtenir le prix d’une crypto *()*
+    - [ ] `/wallets/{id}/detail` : Detail des cryptos dans le wallet *()*
     - [x] `/auth/register` : Enregistre un nouvel utilisateur
     - [x] `/auth/login` : Envoie un token de connexion
 
