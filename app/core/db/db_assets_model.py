@@ -9,7 +9,7 @@ class Assets(BaseModel):
     symbol = CharField()
     name = CharField()
     supply = FloatField()
-    maxSupply = FloatField()
+    maxSupply = FloatField(null=True)
     marketCapUsd = FloatField()
     volumeUsd24Hr = FloatField()
     priceUsd = FloatField()

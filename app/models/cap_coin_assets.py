@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -7,7 +9,7 @@ class CapCoinAsset(BaseModel):
         symbol: str
         name: str
         supply: float
-        maxSupply: float
+        maxSupply: Optional[float] = None
         marketCapUsd: float
         volumeUsd24Hr: float
         priceUsd: float

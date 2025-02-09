@@ -27,5 +27,11 @@ def create_application() -> FastAPI:
     db.connect()
     return app
 
+
 app = create_application()
-CoinCap.fetch_and_store_asset('bitcoin')
+asset_to_fetch = [
+     Assets(id='ethereum'),
+     Assets(id='bitcoin')
+ ]
+CoinCap.fetch_and_store_asset_list(asset_to_fetch)
+# CoinCap.fetch_and_store_asset('bitcoin')
