@@ -48,8 +48,8 @@ class CoinCap:
         if not data:
             raise Exception("Données d'actif non trouvées")
 
-        asset: CapCoinAsset = cls.__convert_asset_from_json_to_coincap_model(data)
-
+        new_asset: CapCoinAsset = cls.__convert_asset_from_json_to_coincap_model(data)
+        asset: Assets = get_asse
         add_asset(asset)
         return asset
 

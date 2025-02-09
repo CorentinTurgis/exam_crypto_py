@@ -1,11 +1,9 @@
 from pydantic import BaseModel
 
+class CreateWalletRequest(BaseModel):
+    name: str
 
-class CreateRequest(BaseModel):
-    token: str
-
-class AddRequest(BaseModel):
-    token: str
+class AddToWalletRequest(BaseModel):
     crypto_id: str
     amount: float
 
@@ -14,4 +12,3 @@ class RecapRequest(BaseModel):
 
 class DetailRequest(BaseModel):
     token: str
-    

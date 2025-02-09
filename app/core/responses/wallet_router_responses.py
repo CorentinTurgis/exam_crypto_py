@@ -1,11 +1,13 @@
 from datetime import datetime
 from pydantic import BaseModel
 
+from app.core.db.db_cryptos_model import Cryptos
 
-class CreateResponse(BaseModel):
+
+class CreateWalletResponse(BaseModel):
     detail: str
 
-class AddResponse(BaseModel):
+class AddToWalletResponse(BaseModel):
     detail: str
 
 class RecapResponse(BaseModel):
@@ -14,12 +16,11 @@ class RecapResponse(BaseModel):
     numberOfAssets: int
     updateTime: datetime
 
+class AssetDetail(BaseModel):
+    asset_name: str
+    qtt: float
+    total_price: float
+
 class DetailResponse(BaseModel):
     detail: str
-    cryptos: List[
-        name: str
-        quantity: float
-        value: float
-        updateTime: datetime
-    ]
-
+    crypto_list: list[AssetDetail]

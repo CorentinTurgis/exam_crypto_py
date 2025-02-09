@@ -1,1 +1,2 @@
 from .auth_router_responses import LoginResponse, RegisterResponse
+from .wallet_router_responses import CreateWalletResponse, AddToWalletResponse, RecapResponse, DetailResponse
