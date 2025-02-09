@@ -1,8 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel
 
-from app.core.db.db_cryptos_model import Cryptos
-
 
 class CreateWalletResponse(BaseModel):
     detail: str
