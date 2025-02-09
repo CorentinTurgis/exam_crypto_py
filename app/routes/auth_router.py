@@ -38,3 +38,24 @@ def register(req: RegisterRequest) -> RegisterResponse:
     except Exception as e:
         print(f'ERREUR : {e}')
     return RegisterResponse(token='', detail='Unexpected exception')
+
+
+@auth_router.get("/test")
+def list_users(current_user=Depends(get_current_user)):
+    return current_user
+
+''' 
+
+@app.get("/cardgame/{number_of_player}")
+def distribute_game(number_of_player: int)
+
+/wallets/create  &&  /wallets/{id}/add &&  /wallets/{id}/recap  && /wallets/{id}/detail
+
+wallet_service
+create_wallet()
+update_wallet_name()
+add_crypto()
+get_wallet_recap()
+get_wallet_detail() 
+''' 
+
