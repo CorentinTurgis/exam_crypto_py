@@ -6,7 +6,7 @@ class Cryptos(BaseModel):
     """
     Modèle représentant un portefeuille crypto.
     """
-    id = AutoField(unique=True)
+    id = AutoField(unique=True, primary_key=True)
     asset_id = ForeignKeyField(Assets, backref="cryptos", to_field="id")
     wallet_id = ForeignKeyField(Wallets, backref="wallets", to_field="id")
     qtt = FloatField()

@@ -2,7 +2,8 @@ import requests
 
 from app.core.db import Assets
 from app.models import CapCoinAsset
-from app.services import add_asset
+from app.services import add_asset, get_asset_by_id
+from app.services.asset_service import update_asset
 
 
 class CoinCap:
@@ -49,29 +50,35 @@ class CoinCap:
             raise Exception("Données d'actif non trouvées")
 
         new_asset: CapCoinAsset = cls.__convert_asset_from_json_to_coincap_model(data)
-        asset: Assets = get_asse
-        add_asset(asset)
-        return asset
+        asset: Assets = get_asset_by_id(new_asset.id)
+        if asset:
+            update_asset(new_asset)
+        else:
+            add_asset(new_asset)
+        return new_asset
 
     @classmethod
-    def fetch_and_store_asset_list(cls, asset_list: list[Assets]):
-        ids_str = ",".join(asset.id for asset in asset_list)
-        params = {"ids": ids_str}
+    def fetch_and_store_asset_list(cls, asset_list: str):
+        params = {"ids": asset_list}
         res = requests.get(cls.BASE_URL, params=params)
 
         if res.status_code != 200:
             raise Exception(
-                f"Erreur lors de la récupération des actifs '{ids_str}': {res.status_code}"
+                f"Erreur lors de la récupération des actifs '{asset_list}': {res.status_code}"
             )
 
         data = res.json()["data"]
         if not data:
-            raise Exception(f"No assets found for {ids_str}")
+            raise Exception(f"No assets found for {asset_list}")
 
         assets_updated = []
         for item in data:
-            asset = cls.__convert_asset_from_json_to_coincap_model(item)
-            add_asset(asset)
-            assets_updated.append(asset)
+            new_asset = cls.__convert_asset_from_json_to_coincap_model(item)
+            asset: Assets = get_asset_by_id(new_asset.id)
+            if asset:
+                update_asset(new_asset)
+            else:
+                add_asset(new_asset)
+            assets_updated.append(new_asset)
 
         return assets_updated

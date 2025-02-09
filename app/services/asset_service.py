@@ -55,7 +55,7 @@ def update_asset(asset_data: CapCoinAsset):
         raise HTTPException(status_code=500, detail=f"Erreur lors de la mise à jour de l'actif : {e}")
 
 
-def get_asset_by_id(asset_id: int):
+def get_asset_by_id(asset_id: str):
     try:
         asset = Assets.get_or_none(Assets.id == asset_id)
         if asset is None:

@@ -4,7 +4,7 @@ from app.core.db.db_cryptos_model import Cryptos
 
 def get_crypto_by_wallet_and_asset(wallet: Wallets, asset: Assets):
     crypto: Cryptos = Cryptos.get_or_none(
-        (Cryptos.wallet_id == wallet.id) and (Cryptos.wallet_id == asset.id)
+        (Cryptos.wallet_id == wallet.id) and (Cryptos.asset_id == asset.id)
     )
     return crypto
 

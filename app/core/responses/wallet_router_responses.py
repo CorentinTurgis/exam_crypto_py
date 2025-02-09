@@ -24,3 +24,4 @@ class AssetDetail(BaseModel):
 class DetailResponse(BaseModel):
     detail: str
     crypto_list: list[AssetDetail]
+    wallet_price: float

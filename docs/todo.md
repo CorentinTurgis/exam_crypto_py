@@ -1,12 +1,12 @@
 # 📌 TODO - Gestion de Portefeuille Crypto
 
 ## 📂 Modélisation de la Base de Données
-(app.core.schemas.xxx.py)
+(app.core.db)
 - [ ] **Créer les modèles suivants** :
     - [x] `User` : Identifiant unique et nom d'utilisateur
-    - [ ] `Wallet` : Portefeuille lié à un utilisateur *()*
-    - [ ] `WalletAsset` : Stockage des cryptos et quantités *()*
-    - [ ] `CryptoPrice` : Cache des prix en USD *()*
+    - [x] `Wallet` : Portefeuille lié à un utilisateur *()*
+    - [x] `WalletAsset` : Stockage des cryptos et quantités *()*
+    - [x] `CryptoPrice` : Cache des prix en USD *()*
 
 ## ⚙️ Intégration de l’API CoinCap
 - [ ] **Récupérer le prix des cryptos en temps réel** *()*

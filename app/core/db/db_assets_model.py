@@ -4,7 +4,7 @@ from app.core.db import BaseModel
 
 
 class Assets(BaseModel):
-    id = CharField()
+    id = CharField(primary_key=True)
     rank = IntegerField()
     symbol = CharField()
     name = CharField()
