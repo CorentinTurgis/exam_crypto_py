@@ -1,8 +1,9 @@
 class UserAssetsService(UserAssets):
-    def __init__(self, id: int, userId: int, assetId: int, quantity: float, value: float, updateTime: datetime.datetime = None):
+    def __init__(self, id: int, userId: int, assetId: int, walletId: int, quantity: float, value: float, updateTime: datetime.datetime = None):
         self.id = id
         self.userId = userId
         self.assetId = assetId
+        self.walletId = walletId
         self.quantity = quantity
         self.value = value
         self.updateTime = updateTime or datetime.datetime.now()
