@@ -1,6 +1,10 @@
 from peewee import SqliteDatabase
+import os
+from dotenv import load_dotenv
 
-DATABASE_URL = "crypto_api.db"
+load_dotenv()
+
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 db = SqliteDatabase(
     DATABASE_URL,
