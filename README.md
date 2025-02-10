@@ -1,82 +1,107 @@
-# Gestion de Portefeuille Crypto
+# 🚀 API de Gestion de Portefeuille Crypto
 
-## Description
-Ce projet consiste en un backend permettant de gérer un portefeuille de cryptomonnaies. Il permet aux utilisateurs de renseigner les cryptos qu'ils possèdent ainsi que leur quantité, puis de calculer leur valeur actuelle en fonction des cours récupérés depuis l'API [CoinCap](https://docs.coincap.io/).
+## 📌 Description
+Cette API permet de gérer un portefeuille de cryptomonnaies. Elle fournit des endpoints pour l'authentification, la gestion des utilisateurs, des portefeuilles et des actifs cryptographiques.
 
-## Stack Technique
-- **Langage** : Python
-- **Framework** : FastAPI
-- **ORM** : Peewee
-- **Base de données** : SQLite
+---
 
-## Fonctionnalités
-- **Stockage des données des utilisateurs** (crypto et quantité détenue)
-- **Récupération des cours des cryptos via API**
-- **Calcul de la valeur du portefeuille en temps réel**
-- **Endpoints RESTful** pour créer, lire, modifier et supprimer des données
+## 🛠 Installation
 
-## Architecture
-Le projet suit l'architecture recommandée par FastAPI pour les applications de grande taille :
-- **/app/** : Dossier principal contenant le code
-    - **/api/** : Contient les endpoints
-    - **/models/** : Définit les modèles de données (Peewee ORM)
-    - **/services/** : Contient la logique métier
-    - **/core/** : Configuration de l'application
-
-## Installation
 1. **Cloner le dépôt** :
    ```bash
    git clone https://github.com/CorentinTurgis/exam_crypto_py.git
    cd exam_crypto_py
    ```
+
 2. **Créer un environnement virtuel** :
    ```bash
    python -m venv venv
-   source venv/bin/activate
-   venv\Scripts\activate
+   source venv/bin/activate  # macOS/Linux
+   venv\Scripts\activate  # Windows
    ```
+
 3. **Installer les dépendances** :
    ```bash
    pip install -r requirements.txt
+   # pip install fastapi==0.115.8 \
+   # peewee==3.17.9 \
+   # pydantic==2.10.6 \
+   # PyJWT==2.10.1 \
+   # python-dotenv==1.0.1 \
+   # pytz==2025.1 \
    ```
-4. **Lancer le serveur FastAPI** :
+
+4. **Créer un fichier `.env` avec les variables suivantes** :
+   ```ini
+   SECRET_KEY=your_secret_key
+   DATABASE_URL=database_name
+   ```
+
+5. **Lancer le serveur FastAPI** :
    ```bash
    fastapi dev app/main.py
    ```
 
-## TODO
-###v1
--> api/route/wallet_router.py
-[C] Une route /wallet/wealth -> List[{'crypto' : 'btc', 'qtt' : '0.001', 'valeur' : '94_000'}]
-[C] Une route POST /wallet/add_one(crypto_name, qtt) -> Ok
-[C] Une route POST /wallet/remove_one(crypto_name, qtt) -> Ok
+---
 
--> api/route/user_router.py
-[C] Une route POST /users/register
-[C] Une route POST /users/login(user) -> 'user.name_secret'
-[C] Une route POST /users/delete
+## 📌 Endpoints
 
--> core/schemas
-[C] wallets_schema.py
-[C] users_schema.py
-[C] cryptos_schema.py
+### 🔑 **Authentification**
+- **POST `/auth/login`** : Connexion d'un utilisateur → Retourne un token JWT.
+    - **Body JSON :**
+      ```json
+      {
+        "email": "user@example.com",
+        "password": "password123"
+      }
+      ```
+- **POST `/auth/register`** : Inscription d'un nouvel utilisateur.
+    - **Body JSON :**
+      ```json
+      {
+        "first_name": "John",
+        "last_name": "Doe",
+        "username": "j.doe",
+        "email": "user@example.com",
+        "password": "password123"
+      }
+      ```
 
-//Typage
-[J] models/wallet_models.py
-[J] models/users_models.py
-[J] models/crypto_models.py
--- Finalement Wallet pour la vision globale et userAssets pour la liste détaillé ... Evite de forcer une mise à jour à chaque fois
+### 💰 **Portefeuilles**
+- **POST `/wallet/create`** : Créer un portefeuille.
+    - **Body JSON :**
+      ```json
+      {
+        "name": "Mon Portefeuille"
+      }
+      ```
+- **POST `/wallet/add`** : Ajoute une crypto.
+    - **Body JSON :**
+      ```json
+      {
+        "crypto_id": "bitcoin",
+        "amount": 0.5
+      }
+      ```
+- **GET `/wallets/detail`** : Affiche le prix du portefeuille.
 
-services/auth_service.py
-[J] Genere un code secret
-[J] Decode un code secret
+---
 
-services/wallet_services.py
-[J] Recupere la data brute sur l'api et la transforme pour retourner juste ce qu'il faut
-[J] Gere l'ajout d'une crypto dans le wallet
-[J] Gere le remove d'une qtt d'une crypto dans un wallet
+## 🚀 Déploiement avec Docker(ne fonctionne pas super)
 
-services/user_service.py
-[J] CrudUser
+1. **Construire et lancer le conteneur** :
+   ```bash
+   docker-compose up --build -d
+   ```
 
-- Proteger les autres routes si le header Bearer != 'code_secret'
+2. **Vérifier les logs** :
+   ```bash
+   docker-compose logs -f
+   ```
+
+3. **Arrêter les conteneurs** :
+   ```bash
+   docker-compose down
+   ```
+
+---

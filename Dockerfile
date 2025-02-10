@@ -12,7 +12,8 @@ RUN pip install fastapi==0.115.8 \
     pydantic==2.10.6 \
     PyJWT==2.10.1 \
     python-dotenv==1.0.1 \
-    pytz==2025.1
+    pytz==2025.1 \
+    uvicorn==0.34.0
 
 # Définition des variables d'environnement
 ENV PYTHONUNBUFFERED=1
@@ -21,4 +22,4 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 8000
 
 # Commande pour démarrer l'application
-CMD ["fastapi", "prod", "main.py"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
