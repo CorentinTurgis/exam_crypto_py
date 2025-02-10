@@ -8,7 +8,7 @@ class Wallets(BaseModel):
     """
     id = AutoField(unique=True)
     name = CharField()
-    owner = ForeignKeyField(Users, backref="wallets", to_field="id")
+    owner = ForeignKeyField(Users, backref="wallets", to_field="id", unique=True)
 
     def save(self, *args, **kwargs):
         return super().save(*args, **kwargs)

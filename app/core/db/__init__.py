@@ -5,4 +5,4 @@ from .db_assets_model import Assets
 from .db_wallets_model import Wallets
 from .db_cryptos_model import Cryptos
 
-__all__ = ("db", "Users", "BaseModel", "Assets", "Wallets")
+__all__ = ("db", "Users", "BaseModel", "Assets", "Wallets", "Cryptos")
