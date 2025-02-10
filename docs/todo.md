@@ -3,22 +3,21 @@
 ## 📂 Modélisation de la Base de Données
 (app.core.db)
 - [ ] **Créer les modèles suivants** :
-    - [x] `User` : Identifiant unique et nom d'utilisateur
-    - [x] `Wallet` : Portefeuille lié à un utilisateur *()*
-    - [x] `WalletAsset` : Stockage des cryptos et quantités *()*
-    - [x] `CryptoPrice` : Cache des prix en USD *()*
+    - [x] `Users` : Identifiant unique et nom d'utilisateur
+    - [x] `Wallets` : Portefeuille lié à un utilisateur
+    - [x] `Cryptos` : Stockage des cryptos et quantités dans un wallet
+    - [x] `Assets` : Cache des données de coincap
 
 ## ⚙️ Intégration de l’API CoinCap
-- [ ] **Récupérer le prix des cryptos en temps réel** *()*
-- [ ] **Créer une fonction pour mettre à jour les prix stockés** *()*
+- [x] **Récupérer le prix des cryptos au moment du /wallet/detail**
+- [x] **Créer une fonction pour mettre à jour les prix stockés**
 - [ ] **Optimiser la fréquence des requêtes pour éviter une surcharge** *()*
 
 ## 🔗 Endpoints RESTful
 - [ ] **Créer les endpoints suivants :**
-    - [ ] `/wallets/create` : Créer et récupérer un portefeuille *()*
-    - [ ] `/wallets/{id}/add` : Ajouter et gérer des cryptos *()*
-    - [ ] `/wallets/{id}/value` : Calculer la valeur du portefeuille *()*
-    - [ ] `/wallets/{id}/detail` : Detail des cryptos dans le wallet *()*
+    - [x] `/wallet/create` : Créer et récupérer un portefeuille *()*
+    - [x] `/wallet/add` : Ajouter et gérer un wallet *()*
+    - [x] `/wallet/detail` : Detail des cryptos dans le wallet *()*
     - [x] `/auth/register` : Enregistre un nouvel utilisateur
     - [x] `/auth/login` : Envoie un token de connexion
 
