@@ -1,21 +1,23 @@
 from fastapi import HTTPException
 
-from app.core.db import db, Wallets
+from app.core import db
 
 
 def save_wallet(name: str, owner: str) -> None:
-    with db.atomic():
-        Wallets.create(
-            name=name,
-            owner=owner
-        )
-
-def get_wallet_by_user_id(user_id) -> Wallets or None:
     try:
-        wallet = Wallets.get_or_none(Wallets.owner == user_id)
+        with db.db.atomic():
+            db.Wallets.create(
+                name=name,
+                owner=owner
+            )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail='Impossible de créer le wallet')
+
+def get_wallet_by_user_id(user_id) -> db.Wallets:
+    try:
+        wallet: db.Wallets = db.Wallets.get_or_none(db.Wallets.owner == user_id)
         if wallet is None:
             raise HTTPException(status_code=404, detail='wallet_not_found')
         return wallet
     except Exception as e:
-        print(f'ERREUR : {e}')
-    return None
+        raise HTTPException(status_code=500, detail='Impossible de recuperer le wallet')

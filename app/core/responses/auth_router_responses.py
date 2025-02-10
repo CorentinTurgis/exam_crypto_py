@@ -6,4 +6,5 @@ class RegisterResponse(BaseModel):
     detail: str or None
 
 class LoginResponse(BaseModel):
+    detail: str
     token: str
