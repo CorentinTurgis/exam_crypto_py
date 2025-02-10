@@ -7,8 +7,12 @@ WORKDIR /app
 # Copie des fichiers de l'application
 COPY . /app
 
-# Installation des dépendances
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install fastapi==0.115.8 \
+    peewee==3.17.9 \
+    pydantic==2.10.6 \
+    PyJWT==2.10.1 \
+    python-dotenv==1.0.1 \
+    pytz==2025.1
 
 # Définition des variables d'environnement
 ENV PYTHONUNBUFFERED=1
