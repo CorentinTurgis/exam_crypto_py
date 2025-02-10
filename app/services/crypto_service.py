@@ -1,5 +1,4 @@
-from app.core.db import db, Wallets, Assets
-from app.core.db.db_cryptos_model import Cryptos
+from app.core.db import db, Wallets, Assets, Cryptos
 
 
 def get_crypto_by_wallet_and_asset(wallet: Wallets, asset: Assets):

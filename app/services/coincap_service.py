@@ -2,8 +2,7 @@ import requests
 
 from app.core.db import Assets
 from app.models import CapCoinAsset
-from app.services import add_asset, get_asset_by_id
-from app.services.asset_service import update_asset
+from app.services import add_asset, get_asset_by_id, update_asset
 
 
 class CoinCap:
